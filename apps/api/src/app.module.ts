@@ -6,6 +6,7 @@ import { AccountsModule } from './modules/accounts/accounts.module';
 import { VideosModule } from './modules/videos/videos.module';
 import { JobsModule } from './modules/jobs/jobs.module';
 import { ProxiesModule } from './modules/proxies/proxies.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -20,5 +21,6 @@ import { ProxiesModule } from './modules/proxies/proxies.module';
     JobsModule,
     ProxiesModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}
