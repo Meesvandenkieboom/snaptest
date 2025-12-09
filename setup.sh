@@ -43,10 +43,18 @@ echo ""
 echo "📝 Setting up environment files..."
 if [ ! -f .env ]; then
     cp .env.example .env
-    echo -e "${GREEN}✅ Created .env file${NC}"
+    echo -e "${GREEN}✅ Created root .env file${NC}"
     echo -e "${YELLOW}⚠️  Remember to update .env with your settings!${NC}"
 else
-    echo -e "${YELLOW}⚠️  .env already exists, skipping...${NC}"
+    echo -e "${YELLOW}⚠️  Root .env already exists, skipping...${NC}"
+fi
+
+# Copy to apps/api if it doesn't exist
+if [ ! -f apps/api/.env ]; then
+    cp .env.example apps/api/.env
+    echo -e "${GREEN}✅ Created apps/api/.env file${NC}"
+else
+    echo -e "${YELLOW}⚠️  apps/api/.env already exists, skipping...${NC}"
 fi
 
 # Start Docker containers

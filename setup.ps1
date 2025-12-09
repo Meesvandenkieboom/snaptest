@@ -41,10 +41,18 @@ Write-Host ""
 Write-Host "📝 Setting up environment files..." -ForegroundColor Cyan
 if (-not (Test-Path .env)) {
     Copy-Item .env.example .env
-    Write-Host "✅ Created .env file" -ForegroundColor Green
+    Write-Host "✅ Created root .env file" -ForegroundColor Green
     Write-Host "⚠️  Remember to update .env with your settings!" -ForegroundColor Yellow
 } else {
-    Write-Host "⚠️  .env already exists, skipping..." -ForegroundColor Yellow
+    Write-Host "⚠️  Root .env already exists, skipping..." -ForegroundColor Yellow
+}
+
+# Copy to apps/api if it doesn't exist
+if (-not (Test-Path apps/api/.env)) {
+    Copy-Item .env.example apps/api/.env
+    Write-Host "✅ Created apps/api/.env file" -ForegroundColor Green
+} else {
+    Write-Host "⚠️  apps/api/.env already exists, skipping..." -ForegroundColor Yellow
 }
 
 # Start Docker containers
